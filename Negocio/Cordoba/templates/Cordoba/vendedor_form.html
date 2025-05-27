@@ -1,0 +1,16 @@
+{% extends 'Cordoba/index.html' %}
+
+{% block titulo %}
+<h1>Formulario de nuevo vendedor</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Registrar y Guardar">
+</form>
+{% endblock contenido %}
