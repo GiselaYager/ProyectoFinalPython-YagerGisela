@@ -1,0 +1,29 @@
+
+<h2>Buscar Unidad</h2>
+
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">Buscar</button>
+</form>
+
+<h3>Resultados:</h3>
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Marca</th>
+        <th>Año</th>
+        <th>Color</th>
+    </tr>
+    {% for unidad in unidades %}
+    <tr>
+        <td>{{ unidad.nombre }}</td>
+        <td>{{ unidad.marca }}</td>
+        <td>{{ unidad.año_de_fabricacion }}</td>
+        <td>{{ unidad.color }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No se encontraron unidades.</td></tr>
+    {% endfor %}
+</table>
+
+<a href="{% url 'unidades' %}">Volver al listado completo</a>

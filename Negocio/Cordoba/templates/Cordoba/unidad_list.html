@@ -1,0 +1,68 @@
+{% extends 'Cordoba/index.html' %}
+
+{% block titulo %}
+
+<h1 style="font-family: 'Arial', sans-serif; color: white;">Listado de Unidades Disponibles</h1>
+
+{% endblock titulo %}
+
+{% block contenido %}
+
+
+<table>
+    <tr>
+        <td width="200"><h2 style="font-size: 24px;">Unidades Disponibles</h2></td>
+        <td>
+        {% if request.user.is_superuser %}
+            <a href="{% url 'unidadCreate' %}" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus fa-lg" title="Crear"></i> Crear
+            </a>
+        {% endif %}
+            &nbsp;
+            <a href="{% url 'buscarUnidad' %}" class="btn btn-secondary btn-sm">
+                <i class="fa fa-search" title="Buscar Unidad"></i> Buscar Unidad
+            </a>
+        
+        </td>        
+    </tr>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Año de Fabricación</th>
+            <th>Color</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for u in unidad_list  %}
+        <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.nombre }}</td>
+            <td>{{ u.marca }}</td>
+            <td>{{ u.año_de_fabricacion}}</td>
+            <td>{{ u.color }}</td>
+            <td>
+            {% if request.user.is_superuser %}
+                <a
+                  href="{% url 'unidadUpdate' u.id %}"
+                  class="btn btn-primary"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a
+                  href="{% url 'unidadDelete' u.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                </a>
+            {% endif %}              
+            </td>             
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}

@@ -1,16 +1,24 @@
 {% extends 'Cordoba/index.html' %}
 
+
 {% block titulo %}
-<h1>Formulario de nuevo vendedor</h1>
+    {% if form.instance.pk %}
+        <h1 class="text-white">Editar Vendedor</h1>
+    {% else %}
+        <h1 class="text-white">Agregar un Vendedor</h1>
+    {% endif %}
 {% endblock titulo %}
 
 
+
+
 {% block contenido %}
+
 <form action="" method="post">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
     </table>
-    <input type="submit" value="Registrar y Guardar">
+    <input type="submit" value="Guardar">
 </form>
 {% endblock contenido %}

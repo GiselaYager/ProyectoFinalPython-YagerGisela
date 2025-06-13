@@ -1,0 +1,19 @@
+{% extends "Cordoba/index.html" %}
+
+
+{% block titulo %}
+<h1 style="font-family: 'Arial', sans-serif; color: white;">Avatar</h1>                              
+{% endblock titulo %}
+
+
+{% block contenido %}   
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Actualizar Avatar">
+</form>
+
+{% endblock contenido %}

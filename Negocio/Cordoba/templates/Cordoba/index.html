@@ -7,6 +7,22 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Grupo GERYA [2025]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(251, 249, 249);
+            color: #222;
+        }
+
+        .container {
+            max-width: 800px;
+        }
+
+        h1, h2, h3 {
+            color: #414446;
+            text-align: center;
+        }
+    </style>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
         <!-- Bootstrap icons-->
@@ -15,20 +31,42 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <!-- Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="">Inicio</a>
-                <a class="navbar-brand" href="">Clientes</a>
-                <a class="navbar-brand" href="">Vendedores</a>
-                <a class="navbar-brand" href="">Unidades</a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+
+                <a class="navbar-brand" href="{% url 'bienvenida' %}">Inicio</a>
+                <a class="navbar-brand" href="{% url 'about' %}">Acerca de mi</a>
+                <a class="navbar-brand" href="{% url 'clientes' %}">Clientes</a>
+                <a class="navbar-brand" href="{% url 'vendedores' %}">Vendedores</a>
+                <a class="navbar-brand" href="{% url 'unidades' %}">Unidades</a>
+                
+
+                 {% if user.is_authenticated %}
+                    <a class="btn btn-primary" href="{% url 'perfil' %}">Perfil</a>
+                    <a class="btn btn-success" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+                    <form id="logout-form" method="post" action="{% url 'logout' %}" style="display: none;">
+                        {% csrf_token %}
+                    </form>
+                    <p style="color:rgb(63, 63, 66)"> [{{user.first_name}} {{user.last_name}}]</p>
+                                    <div class="text-center">
+                    <a href="{% url 'agregar_avatar' %}"><img src="{{ request.session.avatar }}" height="40px" weight="40px" alt="mi foto"></a>
+                </div>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                    <a class="btn btn-success" href="{% url 'registro' %}">Registrarse</a>
+                {% endif %}
+                                    
+               
             </div>
         </nav>
         <!-- Masthead-->
-        <header class="masthead">
+          <header class="masthead">
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
@@ -36,7 +74,7 @@
                             <!-- Page heading-->
                             
                             {% block titulo %}
-                            <h1 class="mb-5">Grupo GERYA S.A.</h1>                                
+                            <h1 style="font-family: 'Arial', sans-serif; color: white;">Grupo GERYA S.A.</h1>                                 
                             {% endblock titulo %}
                                 
 

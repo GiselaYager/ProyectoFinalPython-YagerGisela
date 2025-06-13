@@ -1,0 +1,25 @@
+{% extends 'Cordoba/index.html' %}
+
+
+{% block titulo %}   
+<h1 class="mb-5 text-white">Eliminar Unidad</h1>                          
+{% endblock titulo %}
+
+
+
+
+
+
+{% block contenido %}   
+
+<form action="" method="post">
+    {% csrf_token %}   
+    <div class="text-center">     
+        <h3>¿ Esta seguro de eliminar la unidad? La misma dejará de estar disponible. <p style="color:rgb(255, 145, 0)">{{ object }}</p> </h3>
+    </div>
+    <div class="text-center">
+        <input type="submit" class="btn btn-primary btn-block" value="Confirmar">
+    </div>
+</form>
+
+{% endblock contenido %}

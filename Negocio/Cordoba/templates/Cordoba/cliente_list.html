@@ -1,0 +1,60 @@
+{% extends 'Cordoba/index.html' %}
+
+{% block titulo %}
+<h1 style="font-family: 'Arial', sans-serif; color: white;">Listado de Clientes</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<table>
+    <tr>
+        <td width="200"><h2 style="font-size: 24px;">Clientes</h2></td>
+        <td>
+        {% if request.user.is_superuser %}
+            <a
+            href="{% url 'clienteCreate' %}"
+            class="btn btn-primary btn-sm"
+            ><i class="fa fa-plus fa-lg" title="Crear"> </i>
+            </a>
+        {% endif %}
+        </td>        
+    </tr>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for c in cliente_list  %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.nombre }}</td>
+            <td>{{ c.apellido }}</td>
+            <td>{{ c.email }}</td>
+            <td>
+            {% if request.user.is_superuser %}
+                <a
+                  href="{% url 'clienteUpdate' c.id %}"
+                  class="btn btn-primary"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a
+                  href="{% url 'clienteDelete' c.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                </a>
+             {% endif %}               
+            </td>             
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}

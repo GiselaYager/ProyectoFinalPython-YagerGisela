@@ -1,13 +1,11 @@
 {% extends 'Cordoba/index.html' %}
 
 {% block titulo %}
-<h1>Bienvenidos a Grupo GERYA S.A.</h1>
+<h1 style="font-family: 'Arial', sans-serif; color: white;">Bienvenidos a Grupo Gerya S.A.</h1>
 {% endblock titulo %}
 
-
-{% block contenido %}
-    <h1>Bienvenido {{nombre}} {{apellido}} a GERYA S.A.</h1>
-    <h2>Gracias por su visita, estamos para ayudarlo.</h2>
-    <h3>Hoy es {{fecha}}.</h3>
+{% block contenido %} 
+    <h1 style="font-size: 24px;">Bienvenido a GERYA S.A.</h1>
+    <h2 style="font-size: 20px;">Gracias por su visita, estamos para ayudarlo.</h2>
+    <h3 style="font-size: 16px;">Hoy es {{fecha}}.</h3>
 {% endblock contenido %}
-    
