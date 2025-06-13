@@ -49,4 +49,9 @@ Panel Administrador:
 
 Video Explicativo:
 
-  https://youtu.be/560eug76MrI
+https://github.com/user-attachments/assets/591af68a-44d3-4509-98e1-57098bee0b89
+
+
+
+
+ 
